@@ -2,6 +2,9 @@
 
 ## [Início](../README.md) > Instalação e configuração
 
+Ao criar uma nova aplicação, considere o uso do [Starter](https://github.com/uspdev/starter). Nesse projeto, as principais bibliotecas USPDeve já estão instaladas e configuradas.
+
+Caso prefira o caminho mais longo, siga os passos abaixo. Esse caminho proporcionará um melhor entendimento desse tema e das demais bibliotecas USPDev que você for utilizar.
 
 0. Se você vai iniciar uma nova aplicação, instale o laravel primeiro.
 
@@ -57,16 +60,30 @@ public/vendor
 #USP_THEME_SISTEMAS_1='{"text":"Pessoas","url":"http://localhost/pessoas"}'
 #USP_THEME_SISTEMAS_2='{"text":"LDAP","url":"http://localhost/ldap"}'
 
-# Escolha o skin a ser utilizado
-#USP_THEME_SKIN=uspdev
+# Escolha o skin a ser utilizado (default=uspdev)
+#USP_THEME_SKIN=
 ```
 
 7. Edite ou crie o seu arquivo `resources/views/layouts/app.blade.php` para estender o **laravel-usp-theme**. Veja um exemplo.
    
-```php
+```html
 @extends('laravel-usp-theme::master')
 
-@section('title') 
+{{-- Blocos do laravel-usp-theme --}}
+{{-- Ative ou desative cada bloco --}}
+
+{{-- Target:card-header; class:card-header-sticky --}}
+@include('laravel-usp-theme::blocos.sticky')
+
+{{-- Target: button, a; class: btn-spinner, spinner --}}
+@include('laravel-usp-theme::blocos.spinner')
+
+{{-- Target: table; class: datatable-simples --}}
+@include('laravel-usp-theme::blocos.datatable-simples')
+
+{{-- Fim de blocos do laravel-usp-theme --}}
+
+@section('title')
   @parent 
 @endsection
 
